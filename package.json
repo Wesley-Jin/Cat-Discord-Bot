@@ -21,6 +21,7 @@
   "dependencies": {
     "discord.js": "^12.5.3",
     "dotenv": "^16.0.0",
+    "querystring": "^0.2.1",
     "r2": "^2.0.1"
   },
   "devDependencies": {
