@@ -36,7 +36,7 @@ async function msgReceived(msg) {
         var breed = image.breeds[0];
 
         console.log('message processed', 'displaying', breed);
-        Discord.Message.channel.send("***"+ breed.name + "*** \r *"+ breed.temperament+"*", { files: [image.url] });
+        msg.channel.send("***"+ breed.name + "*** \r *"+ breed.temperament+"*", { files: [image.url] });
     } 
     catch(error) {
         console.log(error);
