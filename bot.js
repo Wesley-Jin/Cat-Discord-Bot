@@ -57,7 +57,7 @@ async function getCatImage(sub_id) {
         'limit': 1
     }
 
-    let queryString = stringify(query_params);
+    let queryString = querystring.stringify(query_params);
 
     try {
         let _url = CAT_API_URL + `${queryString}`;
