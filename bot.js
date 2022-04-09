@@ -17,7 +17,7 @@ client.on("ready", () => {
 
 client.on("message", msg => {
     if (msg.content === `${BOT_PREFIX}${CAT_IMAGE_COMMAND}`) {
-        getCatImage(msg);
+        msgReceived(msg);
         msg.react("💖")
         msg.react("🐱")
     }
