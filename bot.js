@@ -29,7 +29,7 @@ client.on('error', data => {
 
 client.login(process.env.BOT_TOKEN);
 
-function msgReceived(msg) {
+async function msgReceived(msg) {
     try {
         var images = await getCatImage(msg.author.username);
         var image = images[0];
