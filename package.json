@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Wesley-Jin/Cat-Discord-Bot/issues"
   },
-  "homepage": "https://github.com/Wesley-Jin/Cat-Discord-Bot#readme"
+  "homepage": "https://github.com/Wesley-Jin/Cat-Discord-Bot#readme",
+  "dependencies": {
+    "discord.js": "^13.6.0"
+  }
 }
