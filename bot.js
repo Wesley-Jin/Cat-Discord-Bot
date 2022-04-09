@@ -36,7 +36,7 @@ async function msgReceived(msg) {
         var breed = image.breeds[0];
 
         console.log('message processed', 'displaying', breed);
-        Discord.Message.channel.send("***"+ breed.name + "***", { files: [image.url] });
+        Discord.Message.channel.send("***"+ breed.name + "*** \r *"+ breed.temperament+"*", { files: [image.url] });
     } 
     catch(error) {
         console.log(error);
@@ -46,7 +46,7 @@ async function msgReceived(msg) {
 
 async function getCatImage(sub_id) {
     var headers = {
-        'X-API-KEY': CAT_API_KEY
+        'X-API-KEY': CAT_API_KEY,
     }
     
     var query_params = {
