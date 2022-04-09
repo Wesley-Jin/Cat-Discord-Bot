@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Wesley-Jin/Cat-Discord-Bot#readme",
   "dependencies": {
-    "discord.js": "^13.6.0"
+    "discord.js": "^13.6.0",
+    "dotenv": "^16.0.0"
   }
 }
