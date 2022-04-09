@@ -1,11 +1,15 @@
 // dotenv library which loads bot token into process.env in node modules
 require('dotenv').config();
 
+const querystring = require('querystring');
+const r = require('r2');
 const Discord = require("discord.js");
 const client = new Discord.Client();
 
 const BOT_PREFIX = "~";
 const CAT_IMAGE_COMMAND = "cat"
+const CAT_API_URL = "https://api.thecatapi.com/v1/images/search"
+const CAT_API_KEY = "8edc1e84-ac62-454a-afad-c5a436316e65"
 
 client.on("ready", () => {
     console.log("Ready to go!");
@@ -19,8 +23,51 @@ client.on("message", msg => {
     }
 })
 
-function catImage(msg) {
-    msg.channel.send('https://thecatapi.com/api/images/get?format=src&type=img');
+client.on('error', data => {
+    console.log('error', data);
+})
+
+client.login(process.env.BOT_TOKEN);
+
+function msgReceived(msg) {
+    try {
+        var images = await getCatImage(msg.author.username);
+        var image = images[0];
+        var breed = image.breeds[0];
+
+        console.log('message processed', 'displaying', breed);
+        Discord.Message.channel.send("***"+ breed.name + "***", { files: [image.url] });
+    } 
+    catch(error) {
+        console.log(error);
+    }
+}
+
+
+function getCatImage(msg) {
+    var headers = {
+        'X-API-KEY': CAT_API_KEY
+    }
+    
+    var query_params = {
+        'has_breeds':true,
+        'mime_types':'jpg,png',
+        'size':'small',
+        'limit': 1
+    }
+
+    let queryString = stringify(query_params);
+
+    try {
+        let url = CAT_API_URL + `${queryString}`;
+        var response = await CanvasRenderingContext2D.get(url, {headers}).json
+    }
+    catch(error) {
+        console.log(error);
+    }
+    return response;
+  
+    
     // const imageNumber = Math.floor(Math.random() * 98) + 1;
     
     // switch (true) {
@@ -66,4 +113,3 @@ function catImage(msg) {
     //         break;
     // }
 }
-client.login(process.env.BOT_TOKEN);
