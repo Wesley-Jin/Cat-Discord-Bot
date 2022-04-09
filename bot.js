@@ -44,7 +44,7 @@ function msgReceived(msg) {
 }
 
 
-function getCatImage(msg) {
+async function getCatImage(sub_id) {
     var headers = {
         'X-API-KEY': CAT_API_KEY
     }
@@ -53,6 +53,7 @@ function getCatImage(msg) {
         'has_breeds':true,
         'mime_types':'jpg,png',
         'size':'small',
+        'sub_id': sub_id,
         'limit': 1
     }
 
