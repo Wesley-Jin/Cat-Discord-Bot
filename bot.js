@@ -60,8 +60,8 @@ async function getCatImage(sub_id) {
     let queryString = stringify(query_params);
 
     try {
-        let url = CAT_API_URL + `${queryString}`;
-        var response = await CanvasRenderingContext2D.get(url, {headers}).json
+        let _url = CAT_API_URL + `${queryString}`;
+        var response = await r2.get(_url, {headers}).json
     }
     catch(error) {
         console.log(error);
