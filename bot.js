@@ -8,7 +8,7 @@ const client = new Discord.Client();
 
 const BOT_PREFIX = "~";
 const CAT_IMAGE_COMMAND = "cat"
-const CAT_API_URL = "https://api.thecatapi.com/v1/images/search"
+const CAT_API_URL = "https://api.thecatapi.com/"
 const CAT_API_KEY = "8edc1e84-ac62-454a-afad-c5a436316e65"
 
 client.on("ready", () => {
@@ -60,7 +60,7 @@ async function getCatImage(sub_id) {
     let queryString = querystring.stringify(query_params);
 
     try {
-        let _url = CAT_API_URL + `${queryString}`;
+        let _url = CAT_API_URL + `v1/images/search?${queryString}`;
         var response = await r2.get(_url, {headers}).json
     }
     catch(error) {
