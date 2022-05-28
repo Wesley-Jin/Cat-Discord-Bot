@@ -24,7 +24,7 @@ client.on("message", msg => {
 })
 
 client.on("message", msg => {
-    if (msg.content === `${BOT_PREFIX}jacky`) {
+    if (msg.content === '~jacky') {
         customCatImage(msg);
         msg.react("💖")
         msg.react("🐱‍👤")
