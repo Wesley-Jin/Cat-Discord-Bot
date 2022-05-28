@@ -24,10 +24,10 @@ client.on("message", msg => {
 })
 
 client.on("message", msg => {
-    if (msg.content === '~jacky') {
+    if (msg.content === "~jacky") {
         customCatImage(msg);
         msg.react("💖")
-        msg.react("🐱‍👤")
+        msg.react("😻")
     }
 })
 
