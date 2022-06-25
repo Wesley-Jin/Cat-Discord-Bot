@@ -11,6 +11,27 @@ const CAT_IMAGE_COMMAND = "cat"
 const CAT_API_URL = "https://api.thecatapi.com/"
 const CAT_API_KEY = "8edc1e84-ac62-454a-afad-c5a436316e65"
 
+const JACKY_CAT = [
+    "https://i.imgur.com/He9oSkX.jpeg",
+    "https://i.imgur.com/YbTdVby.jpeg",
+    "https://i.imgur.com/3HcNFGy.jpeg",
+    "https://i.imgur.com/Hd2yUty.jpeg",
+    "https://i.imgur.com/FII02Ap.jpeg",
+    "https://i.imgur.com/GcCmIPZ.jpeg",
+    "https://i.imgur.com/I7tqrvj.jpeg",
+    "https://i.imgur.com/QTtiq3q.jpeg",
+    "https://i.imgur.com/im636M3.jpeg",
+    "https://i.imgur.com/SqPSVXv.jpeg",
+    "https://i.imgur.com/nF4j6vl.jpeg",
+    "https://i.imgur.com/FmpwUVV.jpeg",
+    "https://i.imgur.com/ynqrmk2.jpeg",
+    "https://i.imgur.com/iNtlMDk.jpeg",
+    "https://i.imgur.com/AGnGRUn.jpeg",
+    "https://i.imgur.com/PB9eqBp.jpeg",
+    "https://i.imgur.com/qkBoYZM.jpeg",
+    "https://i.imgur.com/yFC1uD6.jpeg"
+]
+
 client.on("ready", () => {
     console.log("Ready to go!");
 })
@@ -44,9 +65,9 @@ async function msgReceived(msg) {
         var breed = image.breeds[0];
 
         console.log('message processed', 'displaying', breed);
-        msg.channel.send("***"+ breed.name + "*** \r *"+ breed.temperament+"*", { files: [image.url] });
-    } 
-    catch(error) {
+        msg.channel.send("***" + breed.name + "*** \r *" + breed.temperament + "*", { files: [image.url] });
+    }
+    catch (error) {
         console.log(error);
     }
 }
@@ -56,11 +77,11 @@ async function getCatImage(sub_id) {
     var headers = {
         'X-API-KEY': CAT_API_KEY,
     }
-    
+
     var query_params = {
-        'has_breeds':true,
-        'mime_types':'jpg,png',
-        'size':'small',
+        'has_breeds': true,
+        'mime_types': 'jpg,png',
+        'size': 'small',
         'sub_id': sub_id,
         'limit': 1
     }
@@ -69,19 +90,31 @@ async function getCatImage(sub_id) {
 
     try {
         let _url = CAT_API_URL + `v1/images/search?${queryString}`;
-        var response = await r2.get(_url, {headers}).json
+        var response = await r2.get(_url, { headers }).json
     }
-    catch(error) {
+    catch (error) {
         console.log(error);
     }
     return response;
 }
 
-    function customCatImage(msg) {
+let lastImage;
+
+function customCatImage(msg) {
+    let imageNumber = Math.floor(Math.random() * JACKY_CAT.length);
+    while (imageNumber === lastImage) {
+        imageNumber = Math.floor(Math.random() * JACKY_CAT.length);
+    }
+    msg.channel.send(JACKY_CAT[imageNumber]);
+    lastImage = imageNumber;
+}
+
+
+/*function customCatImage(msg) {
     const imageNumber = Math.floor(Math.random() * 17) + 1;
     var lastImage = 0;
 
-    if(lastImage == imageNumber) {
+    if (lastImage == imageNumber) {
         customCatImage(msg);
     }
     else {
@@ -159,11 +192,11 @@ async function getCatImage(sub_id) {
                 lastImage = 18;
                 break;
             default:
-                msg.channel.send('Bad value, Wesley is dumb, yikes 🤡');
+                msg.channel.send('Bad value, Wesley is a 🤡');
                 break;
         }
     }
-}
+}*/
 
 /*
   const imageNumber = Math.floor(Math.random() * 98) + 1;
