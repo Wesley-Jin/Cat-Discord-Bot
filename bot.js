@@ -79,10 +79,10 @@ async function getCatImage(sub_id) {
 
     function customCatImage(msg) {
     const imageNumber = Math.floor(Math.random() * 17) + 1;
-    const lastImage = 0;
+    var lastImage = 0;
 
     if(lastImage == imageNumber) {
-        customCatImage();
+        customCatImage(msg);
     }
     else {
         switch (true) {
