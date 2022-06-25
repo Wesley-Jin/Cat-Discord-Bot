@@ -11,6 +11,27 @@ const CAT_IMAGE_COMMAND = "cat"
 const CAT_API_URL = "https://api.thecatapi.com/"
 const CAT_API_KEY = "8edc1e84-ac62-454a-afad-c5a436316e65"
 
+const WESLEY_CAT = [
+    "https://imgur.com/eX3mOqN",
+    "https://imgur.com/z5GHOgy",
+    "https://imgur.com/ViHzzpv",
+    "https://imgur.com/AxTycG3",
+    "https://imgur.com/Q3PgM7p",
+    "https://imgur.com/ZZ2aHxT",
+    "https://imgur.com/tCyMunH",
+    "https://imgur.com/6roCwUT",
+    "https://imgur.com/f4GyWr3",
+    "https://imgur.com/c5XerA0",
+    "https://imgur.com/QD18kfw",
+    "https://imgur.com/NXGK5qV",
+    "https://imgur.com/4NuG7Zl",
+    "https://imgur.com/NOp9vG8",
+    "https://imgur.com/lMsc4re",
+    "https://imgur.com/F5UPvYa",
+    "https://imgur.com/EOcrkTO",
+    "https://imgur.com/pJNqeZu"
+]
+
 const JACKY_CAT = [
     "https://i.imgur.com/He9oSkX.jpeg",
     "https://i.imgur.com/YbTdVby.jpeg",
@@ -41,6 +62,14 @@ client.on("message", msg => {
         msgReceived(msg);
         msg.react("💖")
         msg.react("🐱")
+    }
+})
+
+client.on("message", msg => {
+    if (msg.content === "~doudou") {
+        wesleyCat(msg);
+        msg.react("💖")
+        msg.react("😚")
     }
 })
 
@@ -98,6 +127,17 @@ async function getCatImage(sub_id) {
     return response;
 }
 
+let lastWesleyImage;
+
+function wesleyCat(msg) {
+    let imageNumber = Math.floor(Math.random() * WESLEY_CAT.length);
+    while (imageNumber === lastWesleyImage) {
+        imageNumber = Math.floor(Math.random() * WESLEY_CAT.length);
+    }
+    msg.channel.send(WESLEY_CAT[imageNumber]);
+    lastWesleyImage = imageNumber;
+}
+
 let lastJackyImage;
 
 function jackyCat(msg) {
@@ -108,138 +148,3 @@ function jackyCat(msg) {
     msg.channel.send(JACKY_CAT[imageNumber]);
     lastJackyImage = imageNumber;
 }
-
-
-/*function customCatImage(msg) {
-    const imageNumber = Math.floor(Math.random() * 17) + 1;
-    var lastImage = 0;
-
-    if (lastImage == imageNumber) {
-        customCatImage(msg);
-    }
-    else {
-        switch (true) {
-            case (imageNumber === 1):
-                msg.channel.send('https://i.imgur.com/He9oSkX.jpeg');
-                lastImage = 1;
-                break;
-            case (imageNumber === 2):
-                msg.channel.send('https://i.imgur.com/YbTdVby.jpeg');
-                lastImage = 2;
-                break;
-            case (imageNumber === 3):
-                msg.channel.send('https://i.imgur.com/3HcNFGy.jpeg');
-                lastImage = 3;
-                break;
-            case (imageNumber === 4):
-                msg.channel.send('https://i.imgur.com/Hd2yUty.jpeg');
-                lastImage = 4;
-                break;
-            case (imageNumber === 5):
-                msg.channel.send('https://i.imgur.com/FII02Ap.jpeg');
-                lastImage = 5;
-                break;
-            case (imageNumber === 6):
-                msg.channel.send('https://i.imgur.com/GcCmIPZ.jpeg');
-                lastImage = 6;
-                break;
-            case (imageNumber === 7):
-                msg.channel.send('https://i.imgur.com/I7tqrvj.jpeg');
-                lastImage = 7;
-                break;
-            case (imageNumber === 8):
-                msg.channel.send('https://i.imgur.com/QTtiq3q.jpeg');
-                lastImage = 8;
-                break;
-            case (imageNumber === 9):
-                msg.channel.send('https://i.imgur.com/im636M3.jpeg');
-                lastImage = 9;
-                break;
-            case (imageNumber === 10):
-                msg.channel.send('https://i.imgur.com/SqPSVXv.jpeg');
-                lastImage = 10;
-                break;
-            case (imageNumber === 11):
-                msg.channel.send('https://i.imgur.com/nF4j6vl.jpeg');
-                lastImage = 11;
-                break;
-            case (imageNumber === 12):
-                msg.channel.send('https://i.imgur.com/FmpwUVV.jpeg');
-                lastImage = 12;
-                break;
-            case (imageNumber === 13):
-                msg.channel.send('https://i.imgur.com/ynqrmk2.jpeg');
-                lastImage = 13;
-                break;
-            case (imageNumber === 14):
-                msg.channel.send('https://i.imgur.com/iNtlMDk.jpeg');
-                lastImage = 14;
-                break;
-            case (imageNumber === 15):
-                msg.channel.send('https://i.imgur.com/AGnGRUn.jpeg');
-                lastImage = 15;
-                break;
-            case (imageNumber === 16):
-                msg.channel.send('https://i.imgur.com/PB9eqBp.jpeg');
-                lastImage = 16;
-                break;
-            case (imageNumber === 17):
-                msg.channel.send('https://i.imgur.com/qkBoYZM.jpeg');
-                lastImage = 17;
-                break;
-            case (imageNumber === 18):
-                msg.channel.send('https://i.imgur.com/yFC1uD6.jpeg');
-                lastImage = 18;
-                break;
-            default:
-                msg.channel.send('Bad value, Wesley is a 🤡');
-                break;
-        }
-    }
-}*/
-
-/*
-  const imageNumber = Math.floor(Math.random() * 98) + 1;
-    
-    switch (true) {
-        // wallpaperhouse URL 327005 has no image, added another image instead
-        case (imageNumber === 5):
-            msg.channel.send('Error link! Here\'s Doudou instead 💖');
-            msg.channel.send('https://i.imgur.com/lMsc4re.png');
-        case (imageNumber < 10):
-            msg.channel.send(`https://wallpaper-house.com/data/out/9/wallpaper2you_32700${imageNumber}.jpg`);
-            break;
-        case (imageNumber <= 54):
-            msg.channel.send(`https://wallpaper-house.com/data/out/9/wallpaper2you_3270${imageNumber}.jpg`);
-            break;
-        case (imageNumber <= 57):
-            msg.channel.send('https://i.imgur.com/NOp9vG8.jpg');
-            break;
-        case (imageNumber <= 60):
-            msg.channel.send('https://i.imgur.com/lMsc4re.png');
-            break;
-        case (imageNumber <= 63):
-            msg.channel.send('https://i.imgur.com/F5UPvYa.jpg');
-            break;
-        case (imageNumber <= 66):
-            msg.channel.send('https://i.imgur.com/EOcrkTO.jpg');
-            break;    
-        case (imageNumber <= 69):
-            msg.channel.send('https://i.imgur.com/pJNqeZu.jpg');
-            break;
-        case (imageNumber <= 72):
-            msg.channel.send('https://images.unsplash.com/photo-1611915387288-fd8d2f5f928b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80');
-            break;
-        case (imageNumber <= 75):
-            msg.channel.send('https://images.unsplash.com/photo-1529778873920-4da4926a72c2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=736&q=80');
-            break;    
-        case (imageNumber <= 78):
-            msg.channel.send('https://images.unsplash.com/photo-1566847438217-76e82d383f84?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80');
-            break;
-        case (imageNumber <= 99):
-            msg.channel.send(`https://wallpaper-house.com/data/out/9/wallpaper2you_3269${imageNumber}.jpg`);
-            break;
-        default:
-            msg.channel.send('Bad value');
-            break;
-    }*/
