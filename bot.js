@@ -46,7 +46,7 @@ client.on("message", msg => {
 
 client.on("message", msg => {
     if (msg.content === "~jacky") {
-        customCatImage(msg);
+        jackyCat(msg);
         msg.react("💖")
         msg.react("😻")
     }
@@ -98,15 +98,15 @@ async function getCatImage(sub_id) {
     return response;
 }
 
-let lastImage;
+let lastJackyImage;
 
-function customCatImage(msg) {
+function jackyCat(msg) {
     let imageNumber = Math.floor(Math.random() * JACKY_CAT.length);
-    while (imageNumber === lastImage) {
+    while (imageNumber === lastJackyImage) {
         imageNumber = Math.floor(Math.random() * JACKY_CAT.length);
     }
     msg.channel.send(JACKY_CAT[imageNumber]);
-    lastImage = imageNumber;
+    lastJackyImage = imageNumber;
 }
 
 
