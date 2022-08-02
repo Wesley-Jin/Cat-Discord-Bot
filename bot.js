@@ -53,6 +53,28 @@ const JACKY_CAT = [
     "https://i.imgur.com/yFC1uD6.jpeg"
 ]
 
+const WINSTON_DOG = [
+    "https://i.imgur.com/5ePfBtn.jpg",
+    "https://i.imgur.com/jvArF5D.jpg",
+    "https://i.imgur.com/E39Q7xJ.jpg",
+    "https://i.imgur.com/fJXGcpF.jpg",
+    "https://i.imgur.com/I8uGKo6.jpg",
+    "https://i.imgur.com/kFH0QCB.jpg",
+    "https://i.imgur.com/Dp1mAA0.jpg",
+    "https://i.imgur.com/SKm6ENg.jpg",
+    "https://i.imgur.com/Tiq19dc.jpg",
+    "https://i.imgur.com/vccASG4.jpg",
+    "https://i.imgur.com/wE7AOE4.jpg",
+    "https://i.imgur.com/M7G8FrG.jpg",
+    "https://i.imgur.com/AaeiL5h.jpg",
+    "https://i.imgur.com/19QEfqA.jpg",
+    "https://i.imgur.com/KnV2wIB.jpg",
+    "https://i.imgur.com/Lclh5F3.jpg",
+    "https://i.imgur.com/lbuZKYN.jpg",
+    "https://i.imgur.com/Lf1vJ1o.jpg",
+    "https://i.imgur.com/0e8tiXq.jpg"
+]
+
 client.on("ready", () => {
     console.log("Ready to go!");
 })
@@ -60,24 +82,40 @@ client.on("ready", () => {
 client.on("message", msg => {
     if (msg.content === `${BOT_PREFIX}${CAT_IMAGE_COMMAND}`) {
         msgReceived(msg);
-        msg.react("💖")
-        msg.react("🐱")
+        msg.react("💖");
+        msg.react("🐱");
     }
 })
 
 client.on("message", msg => {
     if (msg.content === "~doudou") {
         wesleyCat(msg);
-        msg.react("💖")
-        msg.react("😚")
+        msg.react("💖");
+        msg.react("😚");
     }
 })
 
 client.on("message", msg => {
     if (msg.content === "~jacky") {
         jackyCat(msg);
-        msg.react("💖")
-        msg.react("😻")
+        msg.react("💖");
+        msg.react("😻");
+    }
+})
+
+client.on("message", msg => {
+    if (msg.content === "~gazza") {
+        winstonDog(msg);
+        msg.react("💖");
+        msg.react("🐶");
+    }
+})
+
+client.on("message", msg => {
+    if (msg.content === "~RUFF") {
+        msg.channel.send("https://i.imgur.com/J16qGDr.png")
+        msg.react("💖");
+        msg.react("🤡");
     }
 })
 
@@ -147,4 +185,15 @@ function jackyCat(msg) {
     }
     msg.channel.send(JACKY_CAT[imageNumber]);
     lastJackyImage = imageNumber;
+}
+
+let lastWinstonImage;
+
+function winstonDog(msg) {
+    let imageNumber = Math.floor(Math.random() * WINSTON_DOG.length);
+    while (imageNumber === lastWinstonImage) {
+        imageNumber = Math.floor(Math.random() * WINSTON_DOG.length);
+    }
+    msg.channel.send(WINSTON_DOG[imageNumber]);
+    lastWinstonImage = imageNumber;
 }
