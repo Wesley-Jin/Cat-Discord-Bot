@@ -4,7 +4,11 @@ require('dotenv').config();
 const querystring = require('querystring');
 const r2 = require('r2');
 const Discord = require("discord.js");
-const client = new Discord.Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
+const client = new Discord.Client({ intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.MessageContent
+] });
 
 const BOT_PREFIX = "~";
 const CAT_IMAGE_COMMAND = "cat"
