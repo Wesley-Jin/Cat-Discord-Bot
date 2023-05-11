@@ -1,10 +1,46 @@
 // dotenv library which loads bot token into process.env in node modules
 require('dotenv').config();
 
+// GPT3 Chatbot code
+const { Client, GatewayIntentBits } = require('discord.js');
+const client2 = new Client({ intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.MessageContent
+]})
+
+const { Configuration , OpenAIApi } = require('openai');
+const configuration = new Configuration({
+    organization: process.env.OPENAI_ORG,
+    apiKey: process.env.OPENAI_KEY,
+});
+const openai = new OpenAIApi(configuration);
+
+client2.on('messageCreate', async function(message){
+    try {
+        if(message.author.bot) return;
+
+        const gptResponse = await openai.createCompletion({
+            model: "davinci",
+            prompt: `ChatGPT is a friendly chatbot.\n\
+            ChatGPT: Hello, how are you?\n\
+            ${message.author.username}: ${message.content}\n\
+            ChatGPT:`,
+            temperature: 0.9,
+            max_tokens: 100,
+            stop: ["ChatGPT:", "Wesley Jin:"],
+        })
+        message.reply(`${gptResponse.data.choices[0].text}`);
+        return;
+    } catch(err){
+        console.log(err)
+    }
+});
+
+// Cat Images code
 const querystring = require('querystring');
 const r2 = require('r2');
 const Discord = require("discord.js");
-const { Client, GatewayIntentBits } = require('discord.js');
 const client = new Discord.Client({ intents: [
     GatewayIntentBits.Guilds,
     GatewayIntentBits.GuildMessages,
@@ -198,37 +234,3 @@ function winstonDog(msg) {
     msg.channel.send(WINSTON_DOG[imageNumber]);
     lastWinstonImage = imageNumber;
 }
-
-const client2 = new Client({ intents: [
-    GatewayIntentBits.Guilds,
-    GatewayIntentBits.GuildMessages,
-    GatewayIntentBits.MessageContent
-]})
-
-const { Configuration , OpenAIApi } = require('openai');
-const configuration = new Configuration({
-    organization: process.env.OPENAI_ORG,
-    apiKey: process.env.OPENAI_KEY,
-});
-const openai = new OpenAIApi(configuration);
-
-client2.on('messageCreate', async function(message){
-    try {
-        if(message.author.bot) return;
-
-        const gptResponse = await openai.createCompletion({
-            model: "davinci",
-            prompt: `ChatGPT is a friendly chatbot.\n\
-            ChatGPT: Hello, how are you?\n\
-            ${message.author.username}: !${message.content}\n\
-            ChatGPT:`,
-            temperature: 0.9,
-            max_tokens: 100,
-            stop: ["ChatGPT:", "Wesley Jin:"],
-        })
-        message.reply(`${gptResponse.data.choices[0].text}`);
-        return;
-    } catch(err){
-        console.log(err)
-    }
-});
