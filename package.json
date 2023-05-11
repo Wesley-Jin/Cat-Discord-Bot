@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/Wesley-Jin/Cat-Discord-Bot#readme",
   "dependencies": {
-    "discord.js": "^12.5.3",
+    "discord.js": "^14.12.0-dev.1683763807-1edd01a.0",
     "dotenv": "^16.0.3",
     "openai": "^3.2.1",
     "querystring": "^0.2.1",
