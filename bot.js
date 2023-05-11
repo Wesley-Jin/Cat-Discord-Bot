@@ -202,7 +202,7 @@ const { Client, GatewayIntentBits } = require('discord.js');
 const client2 = new Client({ intents: [
     GatewayIntentBits.Guilds,
     GatewayIntentBits.GuildMessages,
-    GatewayIntentBits.MessagesContent
+    GatewayIntentBits.MessageContent
 ]})
 
 const { Configuration , OpenAIApi } = require('openai');
