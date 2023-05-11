@@ -75,10 +75,6 @@ const WINSTON_DOG = [
     "https://i.imgur.com/0e8tiXq.jpg"
 ]
 
-client.on("ready", () => {
-    console.log("Ready to go!");
-})
-
 client.on("message", msg => {
     if (msg.content === `${BOT_PREFIX}${CAT_IMAGE_COMMAND}`) {
         msgReceived(msg);
