@@ -212,7 +212,7 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
-client.on('messageCreate', async function(message){
+client2.on('messageCreate', async function(message){
     try {
         if(message.author.bot) return;
 
