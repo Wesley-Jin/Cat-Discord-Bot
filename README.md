@@ -1,6 +1,6 @@
 # Cat-Discord-Bot - v1.4 API & ChatBot
 Discord bot which utilises "The Cat API" for sending pictures and basic details of cats 🐱\
-Added in other bot prefixes for different sets of cat images (added in Winston's dog as of V1.3). Bot will not send the same image in succession when using ~jacky, ~doudou, and ~gazza commands.
+Added in other bot prefixes for different sets of cat images (added in Winston's dog as of V1.3). Bot will not send the same image in succession when using ~jacky, ~doudou, and ~gazza commands.<br />
 As of V1.4, ChatBot functionalities has been added where it will respond to any Discord message starting with the prefixes ">>". OpenAI API is implemented for this feature and 'text-davinci-003' chatbot model is used.
 
 <h2> Bot Commands </h2>
