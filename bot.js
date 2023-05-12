@@ -19,6 +19,8 @@ const openai = new OpenAIApi(configuration);
 client2.on('messageCreate', async function(message){
     try {
         if(message.author.bot) return;
+        prefix = message.content[0];
+        if (prefix == '>') {
         const gptResponse = await openai.createCompletion({
             model: "text-davinci-003",
             prompt: `Cat 🐈 is a friendly chatbot that only responds to messages beginning with >.\n\
@@ -34,6 +36,7 @@ client2.on('messageCreate', async function(message){
     } catch(err){
         console.log(err)
     }
+    } else { return; }
 });
 client2.login(process.env.BOT_TOKEN);
 
