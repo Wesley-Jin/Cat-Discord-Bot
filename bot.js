@@ -20,22 +20,23 @@ client2.on('messageCreate', async function(message){
     try {
         if(message.author.bot) return;
         if(message.content.startsWith(">>")) {
-        const gptResponse = await openai.createCompletion({
-            model: "text-davinci-003",
-            prompt: `Cat 🐈 is a friendly chatbot that only responds to messages beginning with >.\n\
-            Cat 🐈: Hello, how are you?\n\
-            ${message.author.username}: >${message.content}\n\
-            Cat 🐈:`,
-            temperature: 0.2,
-            max_tokens: 100,
-            stop: ["Cat 🐈:", "Wesley Jin:"],
-        })
-        message.reply(`${gptResponse.data.choices[0].text}`);
-        return; 
-    } catch(err){
+            const gptResponse = await openai.createCompletion({
+                model: "text-davinci-003",
+                prompt: `Cat 🐈 is a friendly chatbot that only responds to messages beginning with >.\n\
+                Cat 🐈: Hello, how are you?\n\
+                ${message.author.username}: >${message.content}\n\
+                Cat 🐈:`,
+                temperature: 0.2,
+                max_tokens: 100,
+                stop: ["Cat 🐈:", "Wesley Jin:"],
+            })
+            message.reply(`${gptResponse.data.choices[0].text}`);
+            return; 
+        } else { return; }
+    } 
+    catch(err){
         console.log(err)
     }
-    } else { return; }
 });
 client2.login(process.env.BOT_TOKEN);
 
