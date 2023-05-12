@@ -19,7 +19,7 @@ const openai = new OpenAIApi(configuration);
 client2.on('messageCreate', async function(message){
     try {
         if(message.author.bot) return;
-        if (message.content.startsWith(">")) {
+        if(message.content.startsWith(">>")) {
         const gptResponse = await openai.createCompletion({
             model: "text-davinci-003",
             prompt: `Cat 🐈 is a friendly chatbot that only responds to messages beginning with >.\n\
