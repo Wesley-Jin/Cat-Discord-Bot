@@ -36,6 +36,7 @@ client2.on('messageCreate', async function(message){
         console.log(err)
     }
 });
+client2.login(process.env.BOT_TOKEN);
 
 // Cat Images code
 const querystring = require('querystring');
