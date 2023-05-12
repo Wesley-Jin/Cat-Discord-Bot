@@ -19,8 +19,8 @@ const openai = new OpenAIApi(configuration);
 client2.on('messageCreate', async function(message){
     try {
         if(message.author.bot) return;
-
-        const gptResponse = await openai.createCompletion({
+        return message.reply(`${message.content}`);
+        /*const gptResponse = await openai.createCompletion({
             model: "davinci",
             prompt: `!ChatGPT is a friendly chatbot.\n\
             ChatGPT:`,
@@ -32,7 +32,7 @@ client2.on('messageCreate', async function(message){
         return;
     } catch(err){
         console.log(err)
-    }
+    }*/
 });
 client2.login(process.env.BOT_TOKEN);
 
