@@ -8,3 +8,7 @@ As of V1.4, ChatBot functionalities has been added where it will respond to any 
 <code>~doudou in Discord text channels to send an image of Wesley's cat</code> <br />
 <code>~jacky in Discord text channels to send an image of Jacky's cat</code> <br />
 <code>~gazza in Discord text channels to send an image of Winston's dog</code>
+
+Deployments & Hosting:
+Initially, the Discord bot was hosted on Heroku until end of 2022 as their free plans and services were terminated. <br />
+The bot is now hosted on Railway's free plan which provides 500 hours of uptime per month, meaning there is around 10 days of expected downtime per month. <br />
