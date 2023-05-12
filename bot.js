@@ -24,7 +24,6 @@ client2.on('messageCreate', async function(message){
             model: "davinci",
             prompt: `!ChatGPT is a friendly chatbot.\n\
             ChatGPT: Hello, how are you?\n\
-            ${message.author.username}: ${message.content}\n\
             ChatGPT:`,
             temperature: 0.4,
             max_tokens: 100,
