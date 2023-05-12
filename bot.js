@@ -38,7 +38,7 @@ client2.on('messageCreate', async function(message){
     }
     } else { return; }
 });
-client2.login(process.env.BOT_TOKEN);
+// client2.login(process.env.BOT_TOKEN);
 
 // Cat Images code
 const querystring = require('querystring');
