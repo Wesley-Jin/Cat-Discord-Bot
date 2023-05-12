@@ -19,7 +19,6 @@ const openai = new OpenAIApi(configuration);
 client2.on('messageCreate', async function(message){
     try {
         if(message.author.bot) return;
-        return message.reply(`${message.content}`);
         const gptResponse = await openai.createCompletion({
             model: "text-davinci-003",
             temperature: 0.4,
