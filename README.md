@@ -12,4 +12,4 @@ The bot is now hosted on Railway's free plan which provides 500 hours of uptime 
 <code>~doudou in Discord text channels to send an image of Wesley's cat</code> <br />
 <code>~jacky in Discord text channels to send an image of Jacky's cat</code> <br />
 <code>~gazza in Discord text channels to send an image of Winston's dog</code> <br />
-<code> >>"Question/Prompt" in Discord text channels to trigger ChatBot functionality and generate a response</code> <br />
+<code>>>"Question/Prompt" in Discord text channels to trigger ChatBot functionality and generate a response</code> <br />
