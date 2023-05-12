@@ -23,7 +23,6 @@ client2.on('messageCreate', async function(message){
         const gptResponse = await openai.createCompletion({
             model: "davinci",
             prompt: `!ChatGPT is a friendly chatbot.\n\
-            ChatGPT: Hello, how are you?\n\
             ChatGPT:`,
             temperature: 0.4,
             max_tokens: 100,
