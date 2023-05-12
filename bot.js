@@ -23,7 +23,7 @@ client2.on('messageCreate', async function(message){
             model: "text-davinci-003",
             prompt: `Cat 🐈 is a friendly chatbot.\n\
             Cat 🐈: Hello, how are you?\n\
-            ${message.author.username}: ${message.content}\n\
+            ${message.author.username}: >${message.content}\n\
             Cat 🐈:`,
             temperature: 0.4,
             max_tokens: 100,
