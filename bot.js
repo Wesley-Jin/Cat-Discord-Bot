@@ -21,9 +21,13 @@ client2.on('messageCreate', async function(message){
         if(message.author.bot) return;
         const gptResponse = await openai.createCompletion({
             model: "text-davinci-003",
+            prompt: `Cat 🐈 is a friendly chatbot.\n\
+            Cat 🐈: Hello, how are you?\n\
+            ${message.author.username}: ${message.content}\n\
+            Cat 🐈:`,
             temperature: 0.4,
             max_tokens: 100,
-            stop: ["ChatGPT:", "Wesley Jin:"],
+            stop: ["Cat 🐈:", "Wesley Jin:"],
         })
         message.reply(`${gptResponse.data.choices[0].text}`);
         return; 
