@@ -21,13 +21,10 @@ client2.on('messageCreate', async function(message){
         if(message.author.bot) return;
         const gptResponse = await openai.createCompletion({
             model: "text-davinci-003",
-            prompt: `Question: What is human life expectancy in Australia?
-            Cat 🐈:`,
-            
-            /*`Cat 🐈 is a friendly chatbot.\n\
+            prompt: `Cat 🐈 is a friendly chatbot that only responds to messages beginning with >.\n\
             Cat 🐈: Hello, how are you?\n\
             ${message.author.username}: >${message.content}\n\
-            Cat 🐈:`,*/
+            Cat 🐈:`,
             temperature: 0.2,
             max_tokens: 100,
             stop: ["Cat 🐈:", "Wesley Jin:"],
