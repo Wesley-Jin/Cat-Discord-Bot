@@ -20,19 +20,17 @@ client2.on('messageCreate', async function(message){
     try {
         if(message.author.bot) return;
         return message.reply(`${message.content}`);
-        /*const gptResponse = await openai.createCompletion({
-            model: "davinci",
-            prompt: `!ChatGPT is a friendly chatbot.\n\
-            ChatGPT:`,
+        const gptResponse = await openai.createCompletion({
+            model: "text-davinci-003",
             temperature: 0.4,
             max_tokens: 100,
             stop: ["ChatGPT:", "Wesley Jin:"],
         })
         message.reply(`${gptResponse.data.choices[0].text}`);
-        return;
+        return; 
     } catch(err){
         console.log(err)
-    }*/
+    }
 });
 client2.login(process.env.BOT_TOKEN);
 
