@@ -21,13 +21,13 @@ client2.on('messageCreate', async function(message){
         if(message.author.bot) return;
         if(message.content.startsWith(">>")) {
             const gptResponse = await openai.createCompletion({
-                model: "gpt-3.5-turbo",
+                model: "code-davinci-002",
                 prompt: `Cat 🐈 is a friendly chatbot that only responds to messages beginning with >>.\n\
                 Cat 🐈: Hello, how are you?\n\
                 ${message.author.username}: >${message.content}\n\
                 Cat 🐈:`,
-                temperature: 0.2,
-                max_tokens: 100,
+                temperature: 0.1,
+                max_tokens: 200,
                 stop: ["Cat 🐈:", "Wesley Jin:"],
             })
             message.reply(`${gptResponse.data.choices[0].text}`);
