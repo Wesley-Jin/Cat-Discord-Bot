@@ -1,40 +1,41 @@
 // dotenv library which loads bot token into process.env in node modules
 require('dotenv').config();
 
-// GPT3 Chatbot code
+// GPT3.5-turbo Chatbot code
 const { Client, GatewayIntentBits } = require('discord.js');
-const client2 = new Client({ intents: [
-    GatewayIntentBits.Guilds,
-    GatewayIntentBits.GuildMessages,
-    GatewayIntentBits.MessageContent
-]})
+const client2 = new Client({
+    intents: [
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.MessageContent
+    ]
+})
 
-const { Configuration , OpenAIApi } = require('openai');
+const { Configuration, OpenAIApi } = require('openai');
 const configuration = new Configuration({
     organization: process.env.OPENAI_ORG,
     apiKey: process.env.OPENAI_KEY,
 });
 const openai = new OpenAIApi(configuration);
 
-client2.on('messageCreate', async function(message){
+client2.on('messageCreate', async function (message) {
     try {
-        if(message.author.bot) return;
-        if(message.content.startsWith(">>")) {
-            const gptResponse = await openai.createCompletion({
-                model: "text-davinci-003",
-                prompt: `Cat 🐈 is a friendly chatbot that only responds to messages beginning with >>.\n\
-                Cat 🐈: Hello, how are you?\n\
-                ${message.author.username}: >${message.content}\n\
-                Cat 🐈:`,
+        if (message.author.bot) return;
+        if (message.content.startsWith(">>")) {
+            const gptResponse = await openai.createChatCompletion({
+                model: "gpt-3.5-turbo",
+                messages: [
+                    { role: "system", content: "Cat 🐈 is a friendly chatbot that only responds to messages beginning with >>." },
+                    { role: "user", content: message.content.slice(2).trim() }
+                ],
                 temperature: 0.1,
                 max_tokens: 200,
-                stop: ["Cat 🐈:", "Wesley Jin:"],
-            })
-            message.reply(`${gptResponse.data.choices[0].text}`);
-            return; 
+            });
+            message.reply(`${gptResponse.data.choices[0].message.content}`);
+            return;
         } else { return; }
-    } 
-    catch(err){
+    }
+    catch (err) {
         console.log(err)
     }
 });
@@ -44,11 +45,13 @@ client2.login(process.env.BOT_TOKEN);
 const querystring = require('querystring');
 const r2 = require('r2');
 const Discord = require("discord.js");
-const client = new Discord.Client({ intents: [
-    GatewayIntentBits.Guilds,
-    GatewayIntentBits.GuildMessages,
-    GatewayIntentBits.MessageContent
-] });
+const client = new Discord.Client({
+    intents: [
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.MessageContent
+    ]
+});
 
 const BOT_PREFIX = "~";
 const CAT_IMAGE_COMMAND = "cat"
