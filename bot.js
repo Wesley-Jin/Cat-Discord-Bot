@@ -26,7 +26,7 @@ client2.on('messageCreate', async function (message) {
                 model: "gpt-3.5-turbo",
                 messages: [
                     { role: "system", content: "Cat 🐈 is a friendly chatbot that only responds to messages beginning with >>." },
-                    { role: "user", content: message.content.slice(2).trim() }
+                    { role: "user", content: message.content }
                 ],
                 temperature: 0.1,
                 max_tokens: 200,
